@@ -3,8 +3,8 @@
 # 1. Objetivo
 
 Para este proyecto, se usarán tres fuentes de datos de diferentes formatos:
-|Nombre|	Descripción| General|	URL| Formato de Datos|
-|------|-------------|--------|----|------------------|
+|Nombre|	Descripción General|	URL| Formato de Datos|
+|------|----------------------|----|------------------|
 |MUBI SVOD Platform Database for Movie Lovers |	Recopilación de todas las películas existentes en la plataforma MUBI en donde se conoce el rating, criticas y listas hechas por los usuarios. (+15.000.000 de registros basados en rating con su crítica hecha por usuarios)|https://www.kaggle.com/clementmsika/mubi-sqlite-database-for-movie-lovers?select=mubi_db.sqlite|SQLITE
 |TheMovieDB|	Plataforma online donde se puede obtener el listado con información bastante completa de películas y series de televisión| https://developers.themoviedb.org/|	API RESTFul|
 |Movies on Netflix, Prime Video, Hulu and Disney+	|Coleccion de informacion respecto a peliculas que se encuentran existentes en las plataformas online de Netflix, Amazon Prime Video, Hulu y Disney+|https://www.kaggle.com/ruchi798/movies-on-netflix-prime-video-hulu-and-disney|CSV|

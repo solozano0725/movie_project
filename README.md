@@ -46,8 +46,6 @@ la db.
 
 # 4. Modelo de Datos
 
-Paso 3: Definir el modelo de datos
-
 La arquitectura diseñada para este proceso de ETL es: 
 [![Untitled-Diagram-5.png](https://i.postimg.cc/HxT7ktpW/Untitled-Diagram-5.png)](https://postimg.cc/GBSpMG86)
 
@@ -62,9 +60,53 @@ El modelo de los datos que se decidio aplicar fue un modelo relacion donde se re
 
 Se recomienda hacer una actualizacion de datos estaticos como lo son el SQLITE y los CSV de manera semestral o anual, ya que las novedades en gran volumen se presentan en periodo de tiempos largos (cuando se habla de peliculas) y así, en su momento, es de facil adquisicion y de utilidad de estudio los ratings que se generan a partir de ellos. 
 
-# 5. Pasos para crear la ETL
+### Diccionario de Datos
+**REPORT**|**ServerName**|**DatabaseName**|**TableName**|**SchemaName**|**ColumnName**|**DataType**|**MaxLength**|**IsNull**|**IsIdentity**|**Description**
+:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|directors|dbo|director\_id|varchar|200|NO|NO|Identificador del Director
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|directors|dbo|director\_name|varchar|200|YES|NO|Nombre del Director
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|movie\_onstreaming|dbo|movie\_id|int|4|YES|NO|Id de la Pelicula en MUBI
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|movie\_onstreaming|dbo|movie\_title|varchar|250|YES|NO|Titulo de la Pelicula en Mubi
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|movie\_onstreaming|dbo|movie\_release\_year|int|4|YES|NO|Año de Estreno de la Pelicula según MUBI
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|movie\_onstreaming|dbo|movie\_title\_language|varchar|10|YES|NO|Lenguaje de la Pelicula según MUBI
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|movie\_onstreaming|dbo|movie\_popularity|float|8|YES|NO|Popularidad de la Pelicula Según MUBI
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|movie\_onstreaming|dbo|director\_id|varchar|250|YES|NO|Identificador del Director
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|movie\_onstreaming|dbo|age|varchar|10|YES|NO|Edad permitida para ver la pelicula
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|movie\_onstreaming|dbo|imdb|varchar|250|YES|NO|Codigo en IMDB
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|movie\_onstreaming|dbo|rotten\_tomatoes|varchar|250|YES|NO|Aceptacion de la pelicula
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|movie\_onstreaming|dbo|netflix|int|4|YES|NO|Si la pelicula se encuentra o no en la plataforma. 1=Si  0=No
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|movie\_onstreaming|dbo|hulu|int|4|YES|NO|Si la pelicula se encuentra o no en la plataforma. 1=Si  0=No
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|movie\_onstreaming|dbo|prime\_video|int|4|YES|NO|Si la pelicula se encuentra o no en la plataforma. 1=Si  0=No
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|movie\_onstreaming|dbo|disney|int|4|YES|NO|Si la pelicula se encuentra o no en la plataforma. 1=Si  0=No
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|movies|dbo|movie\_id|int|4|NO|NO|Id de la Pelicula en MUBI
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|movies|dbo|movie\_title|varchar|200|YES|NO|Titulo de la Pelicula en Mubi
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|movies|dbo|movie\_release\_year|varchar|200|YES|NO|Año de Estreno de la Pelicula según MUBI
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|movies|dbo|movie\_title\_language|varchar|200|YES|NO|Lenguaje de la Pelicula según MUBI
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|movies|dbo|movie\_popularity|float|8|YES|NO|Popularidad de la Pelicula Según MUBI
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|movies|dbo|director\_id|varchar|200|YES|NO|Identificador del Director
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|ratings|dbo|rating\_id|int|4|NO|NO|Id de Rating
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|ratings|dbo|rating\_score|float|8|YES|NO|Score dado según la opinion
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|ratings|dbo|rating\_timestamp\_utc|varchar|200|YES|NO|Fecha de cuando se hizo la opinion
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|ratings|dbo|critic|varchar|200|YES|NO|Titulo de la critica
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|ratings|dbo|critic\_comments|varchar|200|YES|NO|Comentarios extras de la critica
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|ratings|dbo|critic\_likes|varchar|200|YES|NO|Likes que otros usuarios le dan a la critica
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|ratings|dbo|user\_id|int|4|YES|NO|Id del usuario que realizo la critica
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|ratings|dbo|movie\_id|int|4|YES|NO|Id de la Pelicula en MUBI
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|users|dbo|user\_id|int|4|NO|NO|Id del usuario que realizo la critica
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|users|dbo|user\_trialist|int|4|YES|NO|Si el usuario tiene servicio gratis. 1= Si 0=No
+DATADICTIONARY|EC2AMAZ-6P1CNDE|movie\_db|users|dbo|user\_subscriber|int|4|YES|NO|Si el usuario tiene servicio pago.  1= Si 0=No
 
-Se guardo todos los resultados de la limpieza en unos JSON que tuvieron idea de ser cargados usando jobs dentro de AWS GLUE para hacer tareas
+
+# 5. Pasos para crear la ETL
+- El manejo de logs y los errores, se manejaron directamente dentro de las opciones que ofrecen Amazon Glue y AWS RDS, ya que se tiene una traza muy precisa de todos los errores que pueden ocurrir a nivel de base de datos, como a la hora de ejecutar los pipeline y los codigos realizados. 
+
+- Posteriormente, al terminar la limpieza se guardo todos los resultados de la limpieza (las entidades) en unos JSON 
+[![image.png](https://i.postimg.cc/k41hCmz7/image.png)](https://postimg.cc/xJmPGW9Z)
+
+Que lo ideal seria que al ejecutar una serie de jobs, estos carguen la informacion en Glue Data Catalog que es el medio por el cual se hace la insercion a la RDS de SQL Server existente. 
+
+[![image.png](https://i.postimg.cc/nLK66NnL/image.png)](https://postimg.cc/06QWSWMg)
+[![image.png](https://i.postimg.cc/GhVwYkMb/image.png)](https://postimg.cc/rK1P2tXH)
 
 # 6. ¿Que hacer si...
 

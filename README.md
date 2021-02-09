@@ -68,12 +68,12 @@ Se guardo todos los resultados de la limpieza en unos JSON que tuvieron idea de 
 
 # 6. ¿Que hacer si...
 
-###Si los datos se incrementaran en 100x.
+## Si los datos se incrementaran en 100x.
 Se veria la necesidad de aumentar la capicidad de la nube para el procesamiento a nivel de la ETL, tambien esta la opcion de manejar lamdas y convertir los datos a datos no estrucurados tales como un JSON para un mejor procesamiento de lo mismo. Tambien, se podria crear mas jobs para los nuevos batch de informacion. 
 
-###Si las tuberías se ejecutaran diariamente a las 7 de la mañana.
+## Si las tuberías se ejecutaran diariamente a las 7 de la mañana.
 En este caso del modelo, se tendria que asegurar que la diferencia de informacion no seria tan diferente dia tras dia, ya que el API traeria nueva informacion pero no lo suficiente para poder usar el dataset en general como una tarea de analisis mas profunda. 
 
-o Si la base de datos necesitara ser accedida por más de 100 personas.
+## Si la base de datos necesitara ser accedida por más de 100 personas.
 Generar una base de datos que permita un alto volumen de consulta tales como un Snowflake o una base de datos NoSQL para la atencion a la demanda que se podria generar en el servidor. Tambien habria que aumentar la capacidad de peticiones y permisos en el servidor. 
 

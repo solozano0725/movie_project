@@ -16,10 +16,11 @@ La union con la idea anterior mencionada con otro de los datasets (Movies on Net
 # 2. Posibles Casos de Uso
 
 Aplicaciones:
-- 
--
--
--
+- Analisis de Sentimientos de acuerdo a las opiniones dadas en las peliculas por edad, genero 
+- Analisis descriptivo de la situacion actual de las peliculas disponibles de los diferentes streaming existente.
+- Prediccion respecto a la frencuencia de peliculas que se podrian ver
+- Serie de tiempo de acuerdo a cuantas opiniones recibio cada pelicula. 
+
 
 • Explicar para qué casos de uso final deseas preparar los datos (por ejemplo, tabla de
 análisis, aplicación de fondo, base de datos de fuentes de verdad, etc.)
@@ -39,6 +40,9 @@ la db.
 
 ## 2. Descripcion estadistica de los datos
 
+- Se realizo un analisis estadistico a alto rasgo para evaluar que los datos estuvieran completos y tuviera completitud.
+- Se realizo una limpieza de los datos que tuvieran null o NaN como valores
+- Como limpieza de datos se procedio a eliminar columnas, corregir errores y normalizar datos
 
 # 4. Modelo de Datos
 
@@ -54,17 +58,13 @@ Vale destacar el uso de SageMaker como ETL novedosa que permite tomar informacio
 
 El modelo de los datos que se decidio aplicar fue un modelo relacion donde se representaran correctamente las llames primarias del modelo y las foraneas que existen entre ellas. 
 
+[![Screenshot-3.png](https://i.postimg.cc/1zWKnKHH/Screenshot-3.png)](https://postimg.cc/DWXGRLRJ)
 
 Se recomienda hacer una actualizacion de datos estaticos como lo son el SQLITE y los CSV de manera semestral o anual, ya que las novedades en gran volumen se presentan en periodo de tiempos largos (cuando se habla de peliculas) y así, en su momento, es de facil adquisicion y de utilidad de estudio los ratings que se generan a partir de ellos. 
 
-• Trazar el modelo de datos conceptuales y explicar por qué se eligió ese modelo.
-• Diseñar la arquitectura y los recursos que utilizados
-• Indique claramente los motivos de la elección de las herramientas y tecnologías para el
-proyecto.
-• Proponga con qué frecuencia deben actualizarse los datos y por qué.
-
-
 # 5. Pasos para crear la ETL
+
+Se guardo todos los resultados de la limpieza en unos JSON que tuvieron idea de ser cargados usando jobs dentro de AWS GLUE para hacer tareas
 
 # 6. ¿Que hacer si...
 
@@ -77,26 +77,3 @@ En este caso del modelo, se tendria que asegurar que la diferencia de informacio
 o Si la base de datos necesitara ser accedida por más de 100 personas.
 Generar una base de datos que permita un alto volumen de consulta tales como un Snowflake o una base de datos NoSQL para la atencion a la demanda que se podria generar en el servidor. Tambien habria que aumentar la capacidad de peticiones y permisos en el servidor. 
 
-
-
-Paso 2: Explorar y evaluar los datos
-• Explorar los datos para identificar problemas de calidad de los datos, como valores
-perdidos, datos duplicados, problemas de formato etc.
-• Documentar los pasos necesarios para limpiar los datos, indicar que tipo de pasos se
-sugieren para la limpieza. Tip se puede usar un diagrama, mapa mental o adición en la
-arquitectura del paso siguiente con el fin de dejar claro este paso.
-
-
-Paso 4: Ejecutar ETL para modelar los datos
-• Crear las tuberías de datos y el modelo de datos
-• Incluir un diccionario de datos
-• Ejecutar controles de calidad de los datos para asegurar que la tubería funcionó como se
-esperaba
-• Limitaciones de integridad en la base de datos relacional (por ejemplo, clave única, tipo
-de datos, etc.)
-• Pruebas de unidad para los “Script” para asegurar que están haciendo lo correcto.
-• Comprobaciones de fuente/conteo para asegurar la integridad de los datos.
-Paso 5: Completar la redacción del proyecto
-• ¿Cuál es el objetivo?
-• ¿Qué preguntas quieres hacer?
-• ¿Por qué eligió el modelo que eligió?
